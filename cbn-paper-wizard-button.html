@@ -1,0 +1,129 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../iron-icon/iron-icon.html">
+<link rel="import" href="../iron-icons/iron-icons.html">
+<!--
+`cbn-paper-wizard-button` 
+
+    <cbn-paper-wizard-button></cbn-paper-wizard-button>
+
+### Validation
+
+### Styling
+
+@demo demo/index.html
+@class cbn-paper-wizard-button
+-->
+
+<dom-module id="cbn-paper-wizard-button">
+	<template>
+		<style>
+			:host(:not(:last-child)) {
+				@apply(--layout-horizontal);
+				@apply(--layout-flex);
+			}
+
+			:host(:last-child) {
+				@apply(--layout-horizontal);
+			}
+
+			:host(:nth-last-child(1)) .connection {
+				display: none;
+			}
+
+			#circle {
+				background: #4285f4;
+				color: #fff;
+				height: 30px;
+				width: 30px;
+				border-radius: 50%;
+				cursor: pointer;
+			}
+
+			:host(:not(.iron-selected)) #circle:not(.done) {
+				opacity: 0.4;
+			}
+
+			#circle.done + .connection {
+				background-color: #4285F4;
+			}
+
+			#circle.done > #circle-content,
+			:host(.iron-selected) #circle-content {
+				display: none;
+			}
+
+			#circle:not(.done) #circle-done-icon,
+			:host(.iron-selected) #circle-done-icon {
+				display: none;
+			}
+
+			:host(:not(.iron-selected)) #circle-edit-icon {
+				display: none;
+			}
+
+			#circle-done-icon {
+				--iron-icon-height: 20px;
+				--iron-icon-width: 20px;
+				margin: 5px;
+			}
+
+			#circle-edit-icon {
+				--iron-icon-height: 18px;
+				--iron-icon-width: 18px;
+				margin: 6px;
+			}
+
+			#circle-content {
+				display: inline-block;
+				height: 30px;
+				width: 30px;
+				line-height: 30px;
+				text-align: center;
+			}
+
+			.connection {
+				background: #DCDCDC;
+				height: 5px;
+				margin-top: 12px;
+				@apply(--layout-flex);
+			}
+		</style>
+		<div id="circle" class$="[[_computeDoneClass(done)]]" data-route="/contNou">
+			<span id="circle-content">
+				<content></content>
+			</span>
+			<iron-icon id="circle-done-icon" icon="done"></iron-icon>
+			<iron-icon id="circle-edit-icon" icon="create"></iron-icon>
+		</div>
+		<div class="connection"></div>
+	</template>
+</dom-module>
+
+<script>
+	(function () {
+		Polymer({
+			is: 'cbn-paper-wizard-button',
+			behaviors: [],
+			properties: {
+				/**
+				 * If this task is done or not
+				 */
+				done: {
+					type: Boolean,
+					value: false,
+					notify: true,
+					readOnly: false,
+					reflectToAttribute: true
+				}
+			},
+			_computeDoneClass: function () {
+				if (this.done) {
+					return "done";
+				} else {
+					return "";
+				}
+			}
+		})
+	})();
+</script>

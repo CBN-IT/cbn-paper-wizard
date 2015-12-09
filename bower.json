@@ -1,0 +1,20 @@
+{
+    "name": "cbn-paper-wizard",
+    "version": "0.1.0",
+    "dependencies": {
+        
+        "polymer": "Polymer/polymer#^1.0.0",
+        "iron-flex-layout": "PolymerElements/iron-flex-layout#^1.0.0",
+        "iron-selector": "PolymerElements/iron-selector#^1.0.0",
+        "iron-icon": "PolymerElements/iron-icon#^1.0.0",
+        "iron-icons": "PolymerElements/iron-icons#^1.0.0"
+    },
+    "devDependencies": {
+        "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+        "paper-item": "PolymerElements/paper-item#^1.0.0",
+        "test-fixture": "PolymerElements/test-fixture#^1.0.0",
+        "iron-test-helpers": "PolymerElements/iron-test-helpers#^1.0.0",
+        "web-component-tester": "*",
+        "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
+    }
+}

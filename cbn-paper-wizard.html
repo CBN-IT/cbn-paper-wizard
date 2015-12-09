@@ -1,0 +1,80 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../iron-selector/iron-selectable.html">
+<link rel="import" href="cbn-paper-wizard-button.html">
+
+<!--
+`cbn-paper-wizard` 
+
+    <cbn-paper-wizard></cbn-paper-wizard>
+
+### Validation
+
+### Styling
+
+@demo demo/index.html
+@class cbn-paper-wizard
+-->
+
+<dom-module id="cbn-paper-wizard">
+	<style>
+		:host {
+			display: block;
+			margin: 0 20px;
+			@apply(--layout-horizontal);
+		}
+	</style>
+	<template>
+		<content></content>
+	</template>
+</dom-module>
+
+<script>
+	(function () {
+		Polymer({
+			is: 'cbn-paper-wizard',
+			behaviors: [Polymer.IronSelectableBehavior],
+			properties: {},
+			listeners: {
+				"iron-activate": "_preventSelect"
+			},
+			_allowSelect: function (item) {
+				var lastItem = null;
+				for (var i = 0; i < this.items.length; i++) {
+					if (item == this.items[i]) {
+						break;
+					}
+					lastItem = this.items[i];
+				}
+				if (!item.done) {
+					if (lastItem == null || !lastItem.done) {
+						return false;
+					}
+				}
+				return true;
+			},
+			_preventSelect: function (e) {
+				var item = e.detail.item;
+				if (!this._allowSelect(item)) {
+					e.preventDefault();
+				}
+			},
+			/**
+			 * To go to the next element
+			 */
+			next: function () {
+				this.setDone(this.selected);
+				var index = (Number(this._valueToIndex(this.selected)) + 1);
+				if (index !== this.items.length) {
+					this.selected = this._indexToValue(index);
+				} else {
+					this.selected = null;
+				}
+			},
+			setDone: function (value) {
+				var item = this._valueToItem(value);
+				item.done = true;
+			}
+		})
+	})();
+</script>

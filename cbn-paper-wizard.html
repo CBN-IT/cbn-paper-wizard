@@ -47,7 +47,7 @@
 					lastItem = this.items[i];
 				}
 				if (!item.done) {
-					if (lastItem == null || !lastItem.done) {
+					if (lastItem !== null && !lastItem.done) {
 						return false;
 					}
 				}

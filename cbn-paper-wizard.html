@@ -85,6 +85,9 @@
 					this.selected = null;
 				}
 			},
+			setSelectedToLast: function(){
+				this.selected = this._reinitLast();
+			},
 			setDone: function (value) {
 				var item = this._valueToItem(value);
 				item.done = true;
@@ -110,6 +113,7 @@
 				if (this._valueToItem(this.selected) === null) {
 					this.selected = this._indexToValue(lastItem);
 				}
+				return this._indexToValue(lastItem);
 			}
 		})
 	})();

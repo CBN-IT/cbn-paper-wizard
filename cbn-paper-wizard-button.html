@@ -40,8 +40,9 @@
 				cursor: pointer;
 			}
 
-			:host(:not(.iron-selected)) #circle:not(.done) {
+			:host(:not(.iron-selected)) #circle:not(.done):not(.last){
 				opacity: 0.4;
+				cursor: not-allowed;
 			}
 
 			#circle.done + .connection {
@@ -89,7 +90,7 @@
 				@apply(--layout-flex);
 			}
 		</style>
-		<div id="circle" class$="[[_computeDoneClass(done)]]" data-route="/contNou">
+		<div id="circle" class$="[[_computeDoneClass(done, last)]]" data-route="/contNou">
 			<span id="circle-content">
 				<content></content>
 			</span>
@@ -115,14 +116,33 @@
 					notify: true,
 					readOnly: false,
 					reflectToAttribute: true
+				},
+				/**
+				 * If this is the last item that isn't done
+				 */
+				last: {
+					type: Boolean,
+					value: false,
+					notify: true,
+					readOnly: false,
+					reflectToAttribute: true
 				}
 			},
+			observers:["_doneChanged(last, done)"],
 			_computeDoneClass: function () {
 				if (this.done) {
 					return "done";
-				} else {
+				} else if(this.last){
+					return "last";
+				} else{
 					return "";
 				}
+			},
+			_doneChanged: function(){
+				this.fire("done-changed",{
+					done: this.done,
+					last: this.last
+				})
 			}
 		})
 	})();

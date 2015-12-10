@@ -36,10 +36,12 @@
 			behaviors: [Polymer.IronSelectableBehavior],
 			properties: {},
 			listeners: {
-				"iron-activate": "_preventSelect"
+				"iron-activate": "_preventSelect",
+				"done-changed": "_reinitLast"
 			},
+			observers:["_reinitLast(items)"],
 			_allowSelect: function (item) {
-				var lastItem = null;
+				/*var lastItem = null;
 				for (var i = 0; i < this.items.length; i++) {
 					if (item == this.items[i]) {
 						break;
@@ -52,6 +54,9 @@
 					}
 				}
 				return true;
+				*/
+				return item.done || item.last;
+				
 			},
 			_preventSelect: function (e) {
 				var item = e.detail.item;
@@ -67,8 +72,13 @@
 			 * To go to the next element
 			 */
 			next: function () {
-				this.setDone(this.selected);
-				var index = (Number(this._valueToIndex(this.selected)) + 1);
+				var index;
+				if (this.selected != null) {
+					this.setDone(this.selected);
+					index = (Number(this._valueToIndex(this.selected)) + 1);
+				} else {
+					index = 0;
+				}
 				if (index !== this.items.length) {
 					this.selected = this._indexToValue(index);
 				} else {
@@ -78,6 +88,28 @@
 			setDone: function (value) {
 				var item = this._valueToItem(value);
 				item.done = true;
+			},
+			_reinitLast: function(e){
+				if(this.items.length===0){
+					return;//this is when the items init for the first time;
+				}
+				console.log(this.items.length);
+				var foundLast = false;
+				var lastItem = null;
+				for (var i = 0; i < this.items.length; i++) {
+					var item = this.items[i];
+					if(foundLast){
+						item.last=false;
+					}
+					if(!item.done && !foundLast){
+						item.last=true;
+						lastItem = i;
+						foundLast=true;
+					}
+				}
+				if (this._valueToItem(this.selected) === null) {
+					this.selected = this._indexToValue(lastItem);
+				}
 			}
 		})
 	})();

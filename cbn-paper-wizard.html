@@ -67,6 +67,9 @@
 			 * To go to the next element
 			 */
 			next: function () {
+				if (this._addToDeplayed(this.next, this, arguments)) {
+					return;
+				}
 				var index;
 				if (this.selected != null) {
 					this.setDone(this.selected);
@@ -84,20 +87,15 @@
 				this.selected = this._reinitLast();
 			},
 			setDone: function (value) {
-				var that = this;
-				var a = arguments;
-				if (this.items.length == 0) {
-					this._delayedValue.push(
-						function() { return that.setDone.apply(that, a); }
-					);
+				if (this._addToDeplayed(this.setDone, this, arguments)) {
 					return;
 				}
 				var item = this._valueToItem(value);
 				item.done = true;
 			},
 			_reinitLast: function (e) {
-				if (this.items.length === 0) {
-					return;//this is when the items init for the first time;
+				if (this._addToDeplayed(this._reinitLast, this, arguments)) {
+					return;
 				}
 				if (this._delayedValue.length > 0) {
 					for (var i = 0; i < this._delayedValue.length; i++) {
@@ -123,6 +121,16 @@
 					this.selected = this._indexToValue(lastItem);
 				}
 				return this._indexToValue(lastItem);
+			},
+			_addToDeplayed: function (f, that, args) {
+				if (this.items.length == 0) {
+					this._delayedValue.push(
+						function () {
+							return f.apply(that, args);
+						}
+					);
+					return true;
+				}
 			}
 		})
 	})();

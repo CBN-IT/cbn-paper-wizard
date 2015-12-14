@@ -84,6 +84,9 @@
 				}
 			},
 			setSelectedToLast: function(){
+				if (this._addToDeplayed(this.setSelectedToLast, this, arguments)) {
+					return;
+				}
 				this.selected = this._reinitLast();
 			},
 			setDone: function (value) {

@@ -34,7 +34,17 @@
 		Polymer({
 			is: 'cbn-paper-wizard',
 			behaviors: [Polymer.IronSelectableBehavior],
-			properties: {},
+			properties: {
+				_delayedValue: {
+					type: Array,
+					value: function () {
+						return [];
+					},
+					notify: false,
+					readOnly: false,
+					reflectToAttribute: false
+				}
+			},
 			listeners: {
 				"iron-activate": "_preventSelect",
 				"done-changed": "_reinitLast"
@@ -89,12 +99,24 @@
 				this.selected = this._reinitLast();
 			},
 			setDone: function (value) {
+				var that = this;
+				if (this.items.length == 0) {
+					this._delayedValue.push(
+						function() { return that.setDone.apply(that, arguments); }
+					);
+				}
 				var item = this._valueToItem(value);
 				item.done = true;
 			},
 			_reinitLast: function (e) {
 				if (this.items.length === 0) {
 					return;//this is when the items init for the first time;
+				}
+				if (this._delayedValue.length > 0) {
+					for (var i = 0; i < this._delayedValue.length; i++) {
+						var f = this._delayedValue[i];
+						f();
+					}
 				}
 				var foundLast = false;
 				var lastItem = null;

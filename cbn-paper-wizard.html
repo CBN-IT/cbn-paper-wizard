@@ -123,7 +123,7 @@
 				return this._indexToValue(lastItem);
 			},
 			_addToDeplayed: function (f, that, args) {
-				if (this.items.length == 0) {
+				if (this.items.length == 0 && this._delayedValue!=undefined) {
 					this._delayedValue.push(
 						function () {
 							return f.apply(that, args);

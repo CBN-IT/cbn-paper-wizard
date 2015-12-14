@@ -127,12 +127,14 @@
 					);
 					return true;
 				}
+				
 				if (this._delayedValue.length > 0) {
-					for (var i = 0; i < this._delayedValue.length; i++) {
-						var f = this._delayedValue[i];
+					var _d = this._delayedValue;
+					this._delayedValue=[]
+					for (var i = 0; i < _d.length; i++) {
+						var f = _d[i];
 						f();
 					}
-					this._delayedValue=[]
 				}
 				return false;
 			}

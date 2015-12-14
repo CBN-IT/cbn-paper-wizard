@@ -51,22 +51,7 @@
 			},
 			observers:["_reinitLast(items)"],
 			_allowSelect: function (item) {
-				/*var lastItem = null;
-				for (var i = 0; i < this.items.length; i++) {
-					if (item == this.items[i]) {
-						break;
-					}
-					lastItem = this.items[i];
-				}
-				if (!item.done) {
-					if (lastItem !== null && !lastItem.done) {
-						return false;
-					}
-				}
-				return true;
-				*/
 				return item.done || item.last;
-				
 			},
 			_preventSelect: function (e) {
 				var item = e.detail.item;
@@ -104,6 +89,7 @@
 					this._delayedValue.push(
 						function() { return that.setDone.apply(that, arguments); }
 					);
+					return;
 				}
 				var item = this._valueToItem(value);
 				item.done = true;

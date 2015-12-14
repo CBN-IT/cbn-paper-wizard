@@ -92,21 +92,21 @@
 				var item = this._valueToItem(value);
 				item.done = true;
 			},
-			_reinitLast: function(e){
-				if(this.items.length===0){
+			_reinitLast: function (e) {
+				if (this.items.length === 0) {
 					return;//this is when the items init for the first time;
 				}
 				var foundLast = false;
 				var lastItem = null;
 				for (var i = 0; i < this.items.length; i++) {
 					var item = this.items[i];
-					if(foundLast){
-						item.last=false;
+					if (foundLast) {
+						item.last = false;
 					}
-					if(!item.done && !foundLast){
-						item.last=true;
+					if (!item.done && !foundLast) {
+						item.last = true;
 						lastItem = i;
-						foundLast=true;
+						foundLast = true;
 					}
 				}
 				if (this._valueToItem(this.selected) === null) {

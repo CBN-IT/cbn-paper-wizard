@@ -97,13 +97,6 @@
 				if (this._addToDeplayed(this._reinitLast, this, arguments)) {
 					return;
 				}
-				if (this._delayedValue.length > 0) {
-					for (var i = 0; i < this._delayedValue.length; i++) {
-						var f = this._delayedValue[i];
-						f();
-					}
-					this._delayedValue=[]
-				}
 				var foundLast = false;
 				var lastItem = null;
 				for (var i = 0; i < this.items.length; i++) {
@@ -134,6 +127,14 @@
 					);
 					return true;
 				}
+				if (this._delayedValue.length > 0) {
+					for (var i = 0; i < this._delayedValue.length; i++) {
+						var f = this._delayedValue[i];
+						f();
+					}
+					this._delayedValue=[]
+				}
+				return false;
 			}
 		})
 	})();

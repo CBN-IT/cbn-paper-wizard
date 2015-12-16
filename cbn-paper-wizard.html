@@ -57,6 +57,7 @@
 				var item = e.detail.item;
 				if (!this._allowSelect(item)) {
 					e.preventDefault();
+					e.stopImmediatePropagation();
 					this.fire("cbn-paper-wizard-prevented", {
 						item: item,
 						selected: this._valueForItem(item)

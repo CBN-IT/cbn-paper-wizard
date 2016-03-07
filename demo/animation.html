@@ -1,88 +1,92 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style> 
+	<style>
 
-.element{
-  animation: empty linear 1.5s;
-  animation-iteration-count: infinite;
-  transform-origin: 100% 50%;
-  width: 100px;
-    height: 100px;
-    background-color: red;
-    border-radius:50%;
-   display:inline-block;
+		.element {
+			animation: empty linear 1.5s;
+			animation-iteration-count: infinite;
+			transform-origin: 100% 50%;
+			width: 100px;
+			height: 100px;
+			background-color: red;
+			border-radius: 50%;
+			display: inline-block;
 
-}
-.bar{
-  margin:44px 0 44px -5px;
-height:12px;
-border-width:1px 1px 1px 0px;
-border-style: solid ;
-border-color:darkgray;
-width:100px;
-display:inline-block;
-    box-sizing: border-box;
-}
-.barContent{
-   background-color:red;
-   width:100%;
-  animation: bar linear 1.5s;
-  animation-iteration-count: infinite;
-  transform-origin: 0% 50%;
-height:100%;
-}
-@keyframes empty {
-  0% {
-    transform:  scaleX(1) scaleY(1.00) ;
-  }
-  75% {
-    transform:  scaleX(0.40) scaleY(0.50) ;
-  }
-  80%{
-    border-top-right-radius: 50%;
-    border-bottom-right-radius: 50%;
-  }
-  90% {
-    
-    border-top-right-radius: 30%;
-    border-bottom-right-radius: 30%;
-  }
-  95% {
-    transform:  scaleX(0.1) scaleY(0.1) ;
-    margin-left: 0px;
-    margin-right: 0px;
-    border-top-right-radius: 10%;
-    border-bottom-right-radius: 10%;
-  }
-  100% {
-    transform:  scaleX(0.0) scaleY(0.1) ;
-    margin-left: 10px;
-    margin-right: -10px;
-  }
-  
-}
-@keyframes bar {
-  0% {
-    transform:  scaleX(0) ;
-  }
-  75% {
-    transform:  scaleX(0.60) ;
-  }
-  100% {
-    transform:  scaleX(1.00) ;
-  }
-  
-}
+		}
 
-</style>
+		.bar {
+			margin: 44px 0 44px -5px;
+			height: 12px;
+			border-width: 1px 1px 1px 0px;
+			border-style: solid;
+			border-color: darkgray;
+			width: 100px;
+			display: inline-block;
+			box-sizing: border-box;
+		}
+
+		.barContent {
+			background-color: red;
+			width: 100%;
+			animation: bar linear 1.5s;
+			animation-iteration-count: infinite;
+			transform-origin: 0% 50%;
+			height: 100%;
+		}
+
+		@keyframes empty {
+			0% {
+				transform: scaleX(1) scaleY(1.00);
+			}
+			75% {
+				transform: scaleX(0.40) scaleY(0.50);
+			}
+			80% {
+				border-top-right-radius: 50%;
+				border-bottom-right-radius: 50%;
+			}
+			90% {
+
+				border-top-right-radius: 30%;
+				border-bottom-right-radius: 30%;
+			}
+			95% {
+				transform: scaleX(0.1) scaleY(0.1);
+				margin-left: 0px;
+				margin-right: 0px;
+				border-top-right-radius: 10%;
+				border-bottom-right-radius: 10%;
+			}
+			100% {
+				transform: scaleX(0.0) scaleY(0.1);
+				margin-left: 10px;
+				margin-right: -10px;
+			}
+
+		}
+
+		@keyframes bar {
+			0% {
+				transform: scaleX(0);
+			}
+			75% {
+				transform: scaleX(0.60);
+			}
+			100% {
+				transform: scaleX(1.00);
+			}
+
+		}
+
+	</style>
 </head>
 <body>
 <div style="vertical-align:center;">
-<div class="element"></div>
-<div class="bar">
-<div class="barContent" style=""></div>
-</div>
+	<div class="element"></div>
+	<div class="bar">
+		<div class="barContent" style=""></div>
+	</div>
 </div>
 </body>
 </html>

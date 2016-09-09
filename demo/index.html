@@ -20,23 +20,37 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 	<script src="../../webcomponentsjs/webcomponents-lite.js"></script>
 
 	<link rel="import" href="../cbn-paper-wizard.html">
+
+	<link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+	<link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
 </head>
 <body unresolved>
-	<div style="width:500px;display:inline-block;">
-		<cbn-paper-wizard selected="2">
-			<cbn-paper-wizard-button done>1</cbn-paper-wizard-button>
-			<cbn-paper-wizard-button done>2</cbn-paper-wizard-button>
-			<cbn-paper-wizard-button>3</cbn-paper-wizard-button>
-			<cbn-paper-wizard-button>4</cbn-paper-wizard-button>
-		</cbn-paper-wizard>
-		<br />
-		<cbn-paper-wizard>
-			<cbn-paper-wizard-button>1</cbn-paper-wizard-button>
-			<cbn-paper-wizard-button>2</cbn-paper-wizard-button>
-			<cbn-paper-wizard-button>3</cbn-paper-wizard-button>
-			<cbn-paper-wizard-button>4</cbn-paper-wizard-button>
-			<cbn-paper-wizard-button>4</cbn-paper-wizard-button>
-		</cbn-paper-wizard>
+	<div  style="width: 500px; margin: 50px auto;">
+		<h1>cbn-paper-wizard demo</h1>
+		<form is="cbn-form" id="demoForm" model style="width: 100%;">
+			<demo-snippet class="centered-demo" style="position:relative">
+				<template is="dom-bind">
+					<cbn-paper-wizard selected="2">
+						<cbn-paper-wizard-button done>1</cbn-paper-wizard-button>
+						<cbn-paper-wizard-button done>2</cbn-paper-wizard-button>
+						<cbn-paper-wizard-button>3</cbn-paper-wizard-button>
+						<cbn-paper-wizard-button>4</cbn-paper-wizard-button>
+					</cbn-paper-wizard>
+				</template>
+			</demo-snippet>
+			<br/>
+			<demo-snippet class="centered-demo" style="position:relative">
+				<template is="dom-bind">
+					<cbn-paper-wizard>
+						<cbn-paper-wizard-button>1</cbn-paper-wizard-button>
+						<cbn-paper-wizard-button>2</cbn-paper-wizard-button>
+						<cbn-paper-wizard-button>3</cbn-paper-wizard-button>
+						<cbn-paper-wizard-button>4</cbn-paper-wizard-button>
+						<cbn-paper-wizard-button>4</cbn-paper-wizard-button>
+					</cbn-paper-wizard>
+				</template>
+			</demo-snippet>
+		</form>
 	</div>
 </body>
 </html>
